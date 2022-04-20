@@ -11,10 +11,10 @@ export default class RailComponent extends Lightning.Component {
       Rail: {
         rect: true,
         color: 0xff808080,
-        mountY: 0.5,
+        mountY: this.bindProp('mountY'),
         w: full,
         x: 0,
-        y: half,
+        y: 0,
         flex: {
           direction: 'row',
           padding: 20,

@@ -3,6 +3,5 @@ export function half(n) {
 }
 
 export function full(n) {
-  console.debug('FULL=' + n)
   return n
 }
