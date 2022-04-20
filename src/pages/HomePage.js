@@ -13,6 +13,7 @@ export default class HomePage extends Lightning.Component {
       MovieRail: {
         type: RailComponent,
         width: 1920,
+        height: 1080,
       },
     }
   }
