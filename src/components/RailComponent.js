@@ -1,5 +1,5 @@
 import { Lightning } from '@lightningjs/sdk'
-import { full, half } from '../utils/size'
+import { full } from '../utils/size'
 import MovieItemComponent from './MovieItemComponent'
 
 export default class RailComponent extends Lightning.Component {
