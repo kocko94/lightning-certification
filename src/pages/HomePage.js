@@ -19,7 +19,6 @@ export default class HomePage extends Lightning.Component {
         height,
         mountY: 0.5,
         y: half(height),
-        items: {},
       },
     }
   }

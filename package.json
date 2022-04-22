@@ -4,6 +4,9 @@
   "dependencies": {
     "@lightningjs/sdk": "^4.8.3"
   },
+  "scripts": {
+    "dev": "lng dev"
+  },
   "lint-staged": {
     "*.js": [
       "eslint --fix",

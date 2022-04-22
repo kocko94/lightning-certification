@@ -1,12 +1,13 @@
 import { Lightning } from '@lightningjs/sdk'
 import { full } from '../utils/size'
 
+const VISIBLE_ELEMENTS_COUNT = 5
+
 export default class Carousel extends Lightning.Component {
   static _template() {
     return {
       w: this.bindProp('width'),
       h: this.bindProp('height'),
-      movies: this.bindProp('movies'),
       Rail: {
         rect: true,
         color: 0xaa000000,
@@ -20,8 +21,20 @@ export default class Carousel extends Lightning.Component {
           wrap: true,
           justifyContent: 'space-evenly',
         },
-        children: this.bindProp('items'),
       },
     }
+  }
+
+  set children(c) {
+    console.debug('children')
+  }
+
+  set items(i) {
+    this._items = i
+    console.debug('set items ' + this.items.length)
+  }
+
+  get items() {
+    return this._items ? this._items : []
   }
 }
