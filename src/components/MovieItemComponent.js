@@ -61,11 +61,6 @@ export default class MovieItemComponent extends Lightning.Component {
     }
   }
 
-  _init() {
-    setTimeout(() => {
-      this._changeAlphasTo(alpha_focused)
-    }, 1000)
-  }
 
   set poster(p) {
     this.tag('Image').patch(Img(p).cover(width, height))
@@ -86,6 +81,14 @@ export default class MovieItemComponent extends Lightning.Component {
     const alphaSmoothChange = ['alpha', alpha, { duration: 0.3 }]
     this.tag('Image').setSmooth(...alphaSmoothChange)
     this.tag('Label').patch(...alphaSmoothChange)
+  }
+
+  _focus() {
+    this._changeAlphasTo(alpha_focused)
+  }
+
+  _unfocus() {
+    this._changeAlphasTo(alpha_unfocused)
   }
 
   _truncateText(t) {
