@@ -21,6 +21,17 @@ export default class MovieItemComponent extends Lightning.Component {
           direction: 'row',
           wrap: false,
         },
+        Shadow: {
+          rect: true,
+          color: 0xaa000000,
+          flexItem: false,
+          mountY: 1,
+          mountX: 0,
+          w: full,
+          y: full,
+          h: 70,
+          x: -10,
+        },
         Text: {
           flexItem: {
             maxWidth: 380,
