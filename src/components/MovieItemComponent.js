@@ -10,6 +10,8 @@ const height_unfocused = height * 0.8
 const alpha_focused = 1
 const alpha_unfocused = 0.5
 const focus_change_anim_duration = 0.3
+const y_focused = 0
+const y_unfocused = (height_focused - height_unfocused) / 2
 
 export default class MovieItemComponent extends Lightning.Component {
   static _template() {
@@ -19,6 +21,7 @@ export default class MovieItemComponent extends Lightning.Component {
       color: 0xff242424,
       w: width_unfocused,
       h: height_unfocused,
+      y: y_unfocused,
       flexItem: {
         margin,
       },
@@ -90,14 +93,21 @@ export default class MovieItemComponent extends Lightning.Component {
     this.setSmooth(...heightChange)
   }
 
+  _changeYTo(y) {
+    const yChange = ['y', y, { duration: focus_change_anim_duration }]
+    this.setSmooth(...yChange)
+  }
+
   _focus() {
     this._changeAlphasTo(alpha_focused)
     this._changeWidthAndHeight(width_focused, height_focused)
+    this._changeYTo(y_focused)
   }
 
   _unfocus() {
     this._changeAlphasTo(alpha_unfocused)
     this._changeWidthAndHeight(width_unfocused, height_unfocused)
+    this._changeYTo(y_unfocused)
   }
 
   _truncateText(t) {

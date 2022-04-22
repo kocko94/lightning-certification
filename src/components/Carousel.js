@@ -13,6 +13,7 @@ export default class Carousel extends Lightning.Component {
         color: 0xaa000000,
         mountY: this.bindProp('mountY'),
         w: full,
+        h: 420,
         x: 0,
         y: 0,
         flex: {
