@@ -19,30 +19,24 @@ export default class HomePage extends Lightning.Component {
         height,
         mountY: 0.5,
         y: half(height),
-        items: {
-          Movie1: {
-            type: MovieItemComponent,
-            movieName: 'Movie1',
-          },
-          Movie2: {
-            type: MovieItemComponent,
-            movieName: 'Movie1',
-          },
-          Movie3: {
-            type: MovieItemComponent,
-            movieName: 'Movie1',
-          },
-          Movie4: {
-            type: MovieItemComponent,
-            movieName: 'Movie1',
-          },
-        },
+        items: {},
       },
     }
   }
 
   async _init() {
-    const movies = await getListOfMovies()
-    console.debug(movies)
+    const movieItems = await this._buildMovieItems()
+    this.tag('MovieRail').patch({
+      items: movieItems,
+    })
+  }
+
+  async _buildMovieItems() {
+    return (await getListOfMovies()).map(movie => {
+      return {
+        type: MovieItemComponent,
+        movieName: movie.title,
+      }
+    })
   }
 }
