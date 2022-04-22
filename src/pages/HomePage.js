@@ -1,9 +1,10 @@
-import { Lightning } from '@lightningjs/sdk'
+import { Lightning, Router } from '@lightningjs/sdk'
 import Carousel from '../components/Carousel'
 import { half } from '../utils/size'
 import Background from '../components/Background'
 import MovieItemComponent from '../components/MovieItemComponent'
 import { getListOfMovies } from '../lib/moveiApi'
+import { Widgets } from '../lib/routes'
 
 export default class HomePage extends Lightning.Component {
   static _template() {
@@ -33,6 +34,10 @@ export default class HomePage extends Lightning.Component {
     this.tag('MovieRail').patch({
       items: movieItems,
     })
+  }
+
+  _handleLeft() {
+    Router.focusWidget(Widgets.MENU)
   }
 
   async _buildMovieItems() {

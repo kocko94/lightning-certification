@@ -32,6 +32,9 @@ export default class Carousel extends Lightning.Component {
   _handleLeft() {
     if (this._idx_focussed_child > 0) {
       this._idx_focussed_child--
+      return true
+    } else {
+      return false //propagate the left key press up
     }
   }
 

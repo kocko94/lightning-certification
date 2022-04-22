@@ -6,6 +6,10 @@ export const Paths = {
   BOOT: '$',
 }
 
+export const Widgets = {
+  MENU: 'Menu',
+}
+
 export const routes = {
   routes: [
     // {
@@ -15,6 +19,7 @@ export const routes = {
     {
       path: Paths.HOME,
       component: HomePage,
+      widgets: [Widgets.MENU],
     },
   ],
 }
