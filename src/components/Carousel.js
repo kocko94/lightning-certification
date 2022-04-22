@@ -1,6 +1,5 @@
 import { Lightning } from '@lightningjs/sdk'
 import { full } from '../utils/size'
-import MovieItemComponent from './MovieItemComponent'
 
 export default class Carousel extends Lightning.Component {
   static _template() {
@@ -10,7 +9,7 @@ export default class Carousel extends Lightning.Component {
       movies: this.bindProp('movies'),
       Rail: {
         rect: true,
-        color: 0xff808080,
+        color: 0xaa000000,
         mountY: this.bindProp('mountY'),
         w: full,
         x: 0,
@@ -21,32 +20,8 @@ export default class Carousel extends Lightning.Component {
           wrap: true,
           justifyContent: 'space-evenly',
         },
-        children: this.bindProp('items')
+        children: this.bindProp('items'),
       },
     }
-  }
-
-  _init() {
-    // this.tag('Rail').patch(
-    //   {
-    //     Movie1: {
-    //       type: MovieItemComponent,
-    //       movieName: 'Movie1',
-    //     },
-    //     Movie2: {
-    //       type: MovieItemComponent,
-    //       movieName: 'Movie1',
-    //     },
-    //     Movie3: {
-    //       type: MovieItemComponent,
-    //       movieName: 'Movie1',
-    //     },
-    //     Movie4: {
-    //       type: MovieItemComponent,
-    //       movieName: 'Movie1',
-    //     },
-    //   },
-    //   true
-    // )
   }
 }
