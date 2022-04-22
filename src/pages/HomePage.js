@@ -1,6 +1,7 @@
 import { Lightning } from '@lightningjs/sdk'
 import RailComponent from '../components/RailComponent'
 import { half } from '../utils/size'
+import Background from '../components/Background'
 
 export default class HomePage extends Lightning.Component {
   static _template() {
@@ -8,10 +9,7 @@ export default class HomePage extends Lightning.Component {
     const height = 1080
     return {
       Background: {
-        rect: true,
-        w: width,
-        h: height,
-        color: 0xfffbb03b,
+        type: Background,
       },
       MovieRail: {
         type: RailComponent,

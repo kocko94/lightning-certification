@@ -1,5 +1,6 @@
 import { Lightning, Router, Utils } from '@lightningjs/sdk'
 import { Paths } from '../lib/routes'
+import Background from '../components/Background'
 
 const ANIM_DUR_HEART_BEAT = 1.5
 
@@ -7,10 +8,7 @@ export default class BootPage extends Lightning.Component {
   static _template() {
     return {
       Background: {
-        rect: true,
-        w: 1920,
-        h: 1080,
-        src: Utils.asset('images/background.jpg'),
+        type: Background,
       },
       LabelShadow: {
         rect: true,
