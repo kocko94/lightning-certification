@@ -98,16 +98,23 @@ export default class MovieItemComponent extends Lightning.Component {
     this.setSmooth(...yChange)
   }
 
+  _changeTextAndShadowWidth(width) {
+    const wChange = ['w', width, { duration: focus_change_anim_duration }]
+    this.tag('Label').setSmooth(...wChange)
+  }
+
   _focus() {
     this._changeAlphasTo(alpha_focused)
     this._changeWidthAndHeight(width_focused, height_focused)
     this._changeYTo(y_focused)
+    this._changeTextAndShadowWidth(width_focused)
   }
 
   _unfocus() {
     this._changeAlphasTo(alpha_unfocused)
     this._changeWidthAndHeight(width_unfocused, height_unfocused)
     this._changeYTo(y_unfocused)
+    this._changeTextAndShadowWidth(width_unfocused)
   }
 
   _truncateText(t) {
