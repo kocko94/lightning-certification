@@ -1,7 +1,7 @@
 import { Lightning } from '@lightningjs/sdk'
 import { full } from '../utils/size'
 
-const VISIBLE_ELEMENTS_COUNT = 5
+const VISIBLE_ELEMENTS_COUNT = 3
 
 export default class Carousel extends Lightning.Component {
   static _template() {
@@ -18,23 +18,25 @@ export default class Carousel extends Lightning.Component {
         flex: {
           direction: 'row',
           padding: 20,
-          wrap: true,
+          wrap: false,
           justifyContent: 'space-evenly',
         },
       },
     }
   }
 
-  set children(c) {
-    console.debug('children')
-  }
-
   set items(i) {
     this._items = i
-    console.debug('set items ' + this.items.length)
+    this._buildItems(i)
   }
 
   get items() {
     return this._items ? this._items : []
+  }
+
+  _buildItems(items) {
+    this.tag('Rail').patch({
+      children: items.slice(0, VISIBLE_ELEMENTS_COUNT),
+    })
   }
 }
