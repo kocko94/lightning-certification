@@ -22,7 +22,11 @@ import { routes } from './lib/routes'
 
 export default class App extends Router.App {
   static getFonts() {
-    return [{ family: 'Regular', url: Utils.asset('fonts/Roboto-Regular.ttf') }]
+    return [
+      { family: 'Regular', url: Utils.asset('fonts/Roboto-Regular.ttf') },
+      { family: 'Funky', url: Utils.asset('fonts/ShadowsIntoLight-Regular.ttf') },
+      // { family: 'Regular', url: Utils.asset('fonts/ShadowsIntoLight-Regular.ttf') },
+    ]
   }
 
   static _template() {

@@ -8,7 +8,7 @@ export default class BootPage extends Lightning.Component {
         rect: true,
         w: 1920,
         h: 1080,
-        color: 0xffb5b8ff,
+        src: Utils.asset('images/background.jpg'),
       },
       Logo: {
         mount: 0.5,
@@ -23,14 +23,16 @@ export default class BootPage extends Lightning.Component {
         y: 1080,
         text: {
           text: 'Welcome back',
+          fontFace: 'Funky',
+          fontSize: 54,
         },
       },
     }
   }
 
   _init() {
-    setTimeout(() => {
-      Router.navigate(Paths.HOME)
-    }, 1000)
+    // setTimeout(() => {
+    //   Router.navigate(Paths.HOME)
+    // }, 2000)
   }
 }
