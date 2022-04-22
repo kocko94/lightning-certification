@@ -18,7 +18,7 @@
  */
 
 import { Router, Utils } from '@lightningjs/sdk'
-import { default as routes } from './lib/routes'
+import { routes } from './lib/routes'
 
 export default class App extends Router.App {
   static getFonts() {
