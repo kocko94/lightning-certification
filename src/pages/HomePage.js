@@ -1,7 +1,8 @@
 import { Lightning } from '@lightningjs/sdk'
-import RailComponent from '../components/RailComponent'
+import Carousel from '../components/Carousel'
 import { half } from '../utils/size'
 import Background from '../components/Background'
+import MovieItemComponent from '../components/MovieItemComponent'
 
 export default class HomePage extends Lightning.Component {
   static _template() {
@@ -12,11 +13,29 @@ export default class HomePage extends Lightning.Component {
         type: Background,
       },
       MovieRail: {
-        type: RailComponent,
+        type: Carousel,
         width,
         height,
         mountY: 0.5,
         y: half(height),
+        items: {
+          Movie1: {
+            type: MovieItemComponent,
+            movieName: 'Movie1',
+          },
+          Movie2: {
+            type: MovieItemComponent,
+            movieName: 'Movie1',
+          },
+          Movie3: {
+            type: MovieItemComponent,
+            movieName: 'Movie1',
+          },
+          Movie4: {
+            type: MovieItemComponent,
+            movieName: 'Movie1',
+          },
+        },
       },
     }
   }
