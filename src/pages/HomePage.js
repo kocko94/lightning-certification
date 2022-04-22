@@ -3,6 +3,7 @@ import Carousel from '../components/Carousel'
 import { half } from '../utils/size'
 import Background from '../components/Background'
 import MovieItemComponent from '../components/MovieItemComponent'
+import { getListOfMovies } from '../lib/moveiApi'
 
 export default class HomePage extends Lightning.Component {
   static _template() {
@@ -38,5 +39,10 @@ export default class HomePage extends Lightning.Component {
         },
       },
     }
+  }
+
+  async _init() {
+    const movies = await getListOfMovies()
+    console.debug(movies)
   }
 }
