@@ -1,13 +1,15 @@
 import { Img, Lightning } from '@lightningjs/sdk'
 import { full } from '../utils/size'
 
-const width = 300,
-  height = 400
+const width = 300
+const height = 400
+
+const alpha_focused = 1
+const alpha_unfocused = 0.5
 
 export default class MovieItemComponent extends Lightning.Component {
   static _template() {
     const margin = 10
-
     return {
       rect: true,
       color: 0xff242424,
@@ -17,7 +19,7 @@ export default class MovieItemComponent extends Lightning.Component {
         margin,
       },
       Image: {
-        alpha: 0.5,
+        alpha: alpha_unfocused,
         w: full,
         h: full,
         texture: {
@@ -25,7 +27,7 @@ export default class MovieItemComponent extends Lightning.Component {
         },
       },
       Label: {
-        alpha: 0.5,
+        alpha: alpha_unfocused,
         mountY: 1,
         mountX: 0,
         w: full,
@@ -61,7 +63,7 @@ export default class MovieItemComponent extends Lightning.Component {
 
   _init() {
     setTimeout(() => {
-      this._changeAlphasTo(1)
+      this._changeAlphasTo(alpha_focused)
     }, 1000)
   }
 
@@ -81,9 +83,9 @@ export default class MovieItemComponent extends Lightning.Component {
   }
 
   _changeAlphasTo(alpha) {
-    const alphaPatch = { alpha }
-    this.tag('Image').patch(alphaPatch)
-    this.tag('Label').patch(alphaPatch)
+    const alphaSmoothChange = ['alpha', alpha, { duration: 0.3 }]
+    this.tag('Image').setSmooth(...alphaSmoothChange)
+    this.tag('Label').patch(...alphaSmoothChange)
   }
 
   _truncateText(t) {
