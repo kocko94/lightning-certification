@@ -1,6 +1,8 @@
 import { Lightning, Router, Utils } from '@lightningjs/sdk'
 import { Paths } from '../lib/routes'
 
+const ANIM_DUR_HEART_BEAT = 1.5
+
 export default class BootPage extends Lightning.Component {
   static _template() {
     return {
@@ -33,16 +35,16 @@ export default class BootPage extends Lightning.Component {
   }
 
   _init() {
-    // setTimeout(() => {
-    //   Router.navigate(Paths.HOME)
-    // }, 2000)
+    setTimeout(() => {
+      Router.navigate(Paths.HOME)
+    }, ANIM_DUR_HEART_BEAT * 1000 + 500)
     this._animateText()
   }
 
   _animateText() {
     this.tag('Label')
       .animation({
-        duration: 1.5,
+        duration: ANIM_DUR_HEART_BEAT,
         actions: [
           {
             p: 'text.fontSize',
