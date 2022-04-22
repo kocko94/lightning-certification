@@ -23,6 +23,11 @@ export default class HomePage extends Lightning.Component {
     }
   }
 
+  _getFocused() {
+    console.debug('focus HomePage')
+    return this.tag('MovieRail')
+  }
+
   async _init() {
     const movieItems = await this._buildMovieItems()
     this.tag('MovieRail').patch({

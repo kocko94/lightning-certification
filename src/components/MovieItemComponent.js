@@ -61,7 +61,6 @@ export default class MovieItemComponent extends Lightning.Component {
     }
   }
 
-
   set poster(p) {
     this.tag('Image').patch(Img(p).cover(width, height))
   }

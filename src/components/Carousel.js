@@ -25,13 +25,33 @@ export default class Carousel extends Lightning.Component {
     }
   }
 
-  set items(i) {
-    this._items = i
-    this._buildItems(i)
+  _init() {
+    this._idx_focussed_child = 0
   }
 
-  get items() {
-    return this._items ? this._items : []
+  _handleLeft() {
+    if (this._idx_focussed_child > 0) {
+      this._idx_focussed_child--
+    }
+  }
+
+  _handleRight() {
+    if (this._idx_focussed_child < this.tag('Rail').children.length - 1) {
+      this._idx_focussed_child++
+    }
+  }
+
+  _getFocused() {
+    return this._getActiveItem()
+  }
+
+  _getActiveItem() {
+    return this.tag('Rail').children[this._idx_focussed_child]
+  }
+
+  set items(i) {
+    this._buildItems(i)
+    this._refocus()
   }
 
   _buildItems(items) {
