@@ -1,6 +1,6 @@
 export async function getListOfMovies() {
-  const path = '/discover/movie'
-  const response = await fetchAuthenticated(path)
+  const path = '/movie/upcoming'
+  const response = await fetchAuthenticated(path, 'language=en-US')
   const payload = await response.json()
   return payload.results.map(movie => {
     return {

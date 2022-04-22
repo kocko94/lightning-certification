@@ -1,8 +1,8 @@
 import { Img, Lightning } from '@lightningjs/sdk'
 import { full } from '../utils/size'
 
-const width = 400,
-  height = 250
+const width = 300,
+  height = 400
 
 export default class MovieItemComponent extends Lightning.Component {
   static _template() {
@@ -49,9 +49,8 @@ export default class MovieItemComponent extends Lightning.Component {
             maxWidth: width - 2 * margin,
           },
           text: {
-            text: this.bindProp('title'),
             fontFace: 'Funky',
-            fontSize: 46,
+            fontSize: 40,
           },
         },
       },
@@ -59,6 +58,30 @@ export default class MovieItemComponent extends Lightning.Component {
   }
 
   set poster(p) {
-    this.tag('Image').texture = Img(p).contain(400, 250)
+    this.tag('Image').patch(Img(p).cover(width, height))
+  }
+
+  set title(t) {
+    let titleText = this._truncateText(t)
+    this.tag('Label')
+      .tag('Text')
+      .patch({
+        text: {
+          text: titleText,
+        },
+      })
+  }
+
+  _truncateText(t) {
+    const maxLength = 20
+    let titleText = t
+    if (titleText.length > maxLength) {
+      titleText = `${t.substring(0, maxLength)}`
+      if (titleText[titleText.length - 1] === ' ') {
+        titleText = titleText.substring(0, titleText.length - 1)
+      }
+      titleText += '...'
+    }
+    return titleText
   }
 }

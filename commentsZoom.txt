@@ -1,0 +1,9 @@
+https://metrological.atlassian.net/servicedesk/customer/portal/1
+Thom van Ledden to Everyone (14:12)
+this.tag(‘myImg’).on(‘txLoaded’, ()=>{//dostuff})
+Me to Everyone (14:14)
+https://rdkcentral.github.io/Lightning/docs/renderEngine/events
+Thom van Ledden to Everyone (14:16)
+.on, .off, .once
+Dean to Everyone (14:59)
+https://join.slack.com/t/lightning-community/shared_invite/zt-f0khi0lt-OXNrRqCfmEWX7jx3F6GaTw
