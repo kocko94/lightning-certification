@@ -14,12 +14,22 @@ export default class MovieItemComponent extends Lightning.Component {
       Label: {
         mountY: 1,
         mountX: 0,
+        w: full,
         y: full,
         x: 10,
-        text: {
-          text: this.bindProp('movieName'),
-          fontFace: 'Funky',
-          fontSize: 46,
+        flex: {
+          direction: 'row',
+          wrap: false,
+        },
+        Text: {
+          flexItem: {
+            maxWidth: 380,
+          },
+          text: {
+            text: this.bindProp('movieName'),
+            fontFace: 'Funky',
+            fontSize: 46,
+          },
         },
       },
     }
