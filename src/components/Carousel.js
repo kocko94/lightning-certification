@@ -1,8 +1,6 @@
 import { Lightning } from '@lightningjs/sdk'
-import { full } from '../utils/size'
 
-const VISIBLE_ELEMENTS_COUNT = 10
-const LAST_VISIBLE_ELEMENT = 7
+const VISIBLE_ELEMENTS_COUNT = 11
 
 export default class Carousel extends Lightning.Component {
   static _template() {
@@ -13,7 +11,7 @@ export default class Carousel extends Lightning.Component {
         rect: true,
         color: 0xaa000000,
         mountY: this.bindProp('mountY'),
-        w: full,
+        w: 3200,
         h: 420,
         x: 0,
         y: 0,
@@ -35,9 +33,12 @@ export default class Carousel extends Lightning.Component {
   _handleLeft() {
     if (this._idx_focussed_child > 0) {
       this._idx_focussed_child--
-      if(this._idx_first_visible <= this._idx_focussed_child) {
-        this._idx_first_visible--
-        this._moveRailBy(310)
+      if (!this._isActiveItemFullyVisible()) {
+        if (this._idx_focussed_child === 0) {
+          this._moveRailTo(0)
+        } else {
+          this._moveRailBy(290)
+        }
       }
       return true
     } else {
@@ -49,15 +50,19 @@ export default class Carousel extends Lightning.Component {
     if (this._idx_focussed_child < this.tag('Rail').children.length - 1) {
       this._idx_focussed_child++
     }
-    if(this._idx_focussed_child >= LAST_VISIBLE_ELEMENT) {
-      this._idx_first_visible++
-      this._moveRailBy(-310)
+    if (!this._isActiveItemFullyVisible()) {
+      this._moveRailBy(-290)
     }
   }
 
   _moveRailBy(move) {
     const rail = this.tag('Rail')
-    rail.setSmooth('x', rail.x + move, { duration: 0.3 })
+    this._moveRailTo(rail.x + move)
+  }
+
+  _moveRailTo(position) {
+    const rail = this.tag('Rail')
+    rail.setSmooth('x', position, { duration: 0.3 })
   }
 
   _getFocused() {
@@ -66,6 +71,13 @@ export default class Carousel extends Lightning.Component {
 
   _getActiveItem() {
     return this.tag('Rail').children[this._idx_focussed_child]
+  }
+
+  _isActiveItemFullyVisible() {
+    const cornerPoints = this._getActiveItem().getCornerPoints()
+    const leftPointX = cornerPoints[0]
+    const rightPointX = cornerPoints[2]
+    return leftPointX >= 0 && rightPointX <= this.w
   }
 
   set items(i) {
