@@ -1,15 +1,27 @@
-import { Lightning } from '@lightningjs/sdk'
+import { Img, Lightning } from '@lightningjs/sdk'
 import { full } from '../utils/size'
+
+const width = 400,
+  height = 250
 
 export default class MovieItemComponent extends Lightning.Component {
   static _template() {
+    const margin = 10
+
     return {
       rect: true,
-      color: 0xffff3a33,
-      w: 400,
-      h: 250,
+      color: 0xff242424,
+      w: width,
+      h: height,
       flexItem: {
-        margin: 10,
+        margin,
+      },
+      Image: {
+        w: full,
+        h: full,
+        texture: {
+          type: Lightning.textures.ImageTexture,
+        },
       },
       Label: {
         mountY: 1,
@@ -34,15 +46,19 @@ export default class MovieItemComponent extends Lightning.Component {
         },
         Text: {
           flexItem: {
-            maxWidth: 380,
+            maxWidth: width - 2 * margin,
           },
           text: {
-            text: this.bindProp('movieName'),
+            text: this.bindProp('title'),
             fontFace: 'Funky',
             fontSize: 46,
           },
         },
       },
     }
+  }
+
+  set poster(p) {
+    this.tag('Image').texture = Img(p).contain(400, 250)
   }
 }

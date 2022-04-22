@@ -9,13 +9,13 @@ export async function getListOfMovies() {
       overview: movie['overview'],
       release_date: movie['release_date'],
       vote_average: movie['vote_average'],
-      backdrop: movie['backdrop_path'],
-      poster: movie['backdrop_path'],
+      backdrop: getImageUrlFor(movie['backdrop_path']),
+      poster: getImageUrlFor(movie['poster_path']),
     }
   })
 }
 
-export function getImageUrlFor(path) {
+function getImageUrlFor(path) {
   return `https://image.tmdb.org/t/p/original${path}`
 }
 
