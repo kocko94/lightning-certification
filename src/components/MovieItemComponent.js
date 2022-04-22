@@ -3,9 +3,13 @@ import { full } from '../utils/size'
 
 const width = 300
 const height = 400
-
+const width_focused = width
+const width_unfocused = width * 0.8
+const height_focused = height
+const height_unfocused = height * 0.8
 const alpha_focused = 1
 const alpha_unfocused = 0.5
+const focus_change_anim_duration = 0.3
 
 export default class MovieItemComponent extends Lightning.Component {
   static _template() {
@@ -13,8 +17,8 @@ export default class MovieItemComponent extends Lightning.Component {
     return {
       rect: true,
       color: 0xff242424,
-      w: width,
-      h: height,
+      w: width_unfocused,
+      h: height_unfocused,
       flexItem: {
         margin,
       },
@@ -49,9 +53,6 @@ export default class MovieItemComponent extends Lightning.Component {
           x: -10,
         },
         Text: {
-          flexItem: {
-            maxWidth: width - 2 * margin,
-          },
           text: {
             fontFace: 'Funky',
             fontSize: 40,
@@ -77,21 +78,30 @@ export default class MovieItemComponent extends Lightning.Component {
   }
 
   _changeAlphasTo(alpha) {
-    const alphaSmoothChange = ['alpha', alpha, { duration: 0.3 }]
+    const alphaSmoothChange = ['alpha', alpha, { duration: focus_change_anim_duration }]
     this.tag('Image').setSmooth(...alphaSmoothChange)
-    this.tag('Label').patch(...alphaSmoothChange)
+    this.tag('Label').setSmooth(...alphaSmoothChange)
+  }
+
+  _changeWidthAndHeight(width, height) {
+    const widthChange = ['w', width, { duration: focus_change_anim_duration }]
+    const heightChange = ['h', height, { duration: focus_change_anim_duration }]
+    this.setSmooth(...widthChange)
+    this.setSmooth(...heightChange)
   }
 
   _focus() {
     this._changeAlphasTo(alpha_focused)
+    this._changeWidthAndHeight(width_focused, height_focused)
   }
 
   _unfocus() {
     this._changeAlphasTo(alpha_unfocused)
+    this._changeWidthAndHeight(width_unfocused, height_unfocused)
   }
 
   _truncateText(t) {
-    const maxLength = 20
+    const maxLength = 15
     let titleText = t
     if (titleText.length > maxLength) {
       titleText = `${t.substring(0, maxLength)}`
