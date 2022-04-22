@@ -19,7 +19,7 @@ export default class Carousel extends Lightning.Component {
           direction: 'row',
           padding: 20,
           wrap: false,
-          justifyContent: 'space-evenly',
+          justifyContent: 'flex-start',
         },
       },
     }

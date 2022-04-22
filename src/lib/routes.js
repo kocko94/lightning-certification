@@ -8,10 +8,10 @@ export const Paths = {
 
 export const routes = {
   routes: [
-    {
-      path: Paths.BOOT,
-      component: BootPage,
-    },
+    // {
+    //   path: Paths.BOOT,
+    //   component: BootPage,
+    // },
     {
       path: Paths.HOME,
       component: HomePage,
