@@ -17,6 +17,7 @@ export default class MovieItemComponent extends Lightning.Component {
         margin,
       },
       Image: {
+        alpha: 0.5,
         w: full,
         h: full,
         texture: {
@@ -24,6 +25,7 @@ export default class MovieItemComponent extends Lightning.Component {
         },
       },
       Label: {
+        alpha: 0.5,
         mountY: 1,
         mountX: 0,
         w: full,
@@ -57,6 +59,12 @@ export default class MovieItemComponent extends Lightning.Component {
     }
   }
 
+  _init() {
+    setTimeout(() => {
+      this._changeAlphasTo(1)
+    }, 1000)
+  }
+
   set poster(p) {
     this.tag('Image').patch(Img(p).cover(width, height))
   }
@@ -70,6 +78,12 @@ export default class MovieItemComponent extends Lightning.Component {
           text: titleText,
         },
       })
+  }
+
+  _changeAlphasTo(alpha) {
+    const alphaPatch = { alpha }
+    this.tag('Image').patch(alphaPatch)
+    this.tag('Label').patch(alphaPatch)
   }
 
   _truncateText(t) {
