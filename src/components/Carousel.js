@@ -1,7 +1,8 @@
 import { Lightning } from '@lightningjs/sdk'
 import { full } from '../utils/size'
 
-const VISIBLE_ELEMENTS_COUNT = 6
+const VISIBLE_ELEMENTS_COUNT = 10
+const LAST_VISIBLE_ELEMENT = 7
 
 export default class Carousel extends Lightning.Component {
   static _template() {
@@ -28,11 +29,16 @@ export default class Carousel extends Lightning.Component {
 
   _init() {
     this._idx_focussed_child = 0
+    this._idx_first_visible = 0
   }
 
   _handleLeft() {
     if (this._idx_focussed_child > 0) {
       this._idx_focussed_child--
+      if(this._idx_first_visible <= this._idx_focussed_child) {
+        this._idx_first_visible--
+        this._moveRailBy(310)
+      }
       return true
     } else {
       return false //propagate the left key press up
@@ -43,6 +49,15 @@ export default class Carousel extends Lightning.Component {
     if (this._idx_focussed_child < this.tag('Rail').children.length - 1) {
       this._idx_focussed_child++
     }
+    if(this._idx_focussed_child >= LAST_VISIBLE_ELEMENT) {
+      this._idx_first_visible++
+      this._moveRailBy(-310)
+    }
+  }
+
+  _moveRailBy(move) {
+    const rail = this.tag('Rail')
+    rail.setSmooth('x', rail.x + move, { duration: 0.3 })
   }
 
   _getFocused() {
