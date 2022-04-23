@@ -29,7 +29,7 @@ export default class MenuWidget extends Lightning.Component {
   }
 
   _setup() {
-    const menuTitles = [Paths.DISCOVER, Paths.POPULAR]
+    const menuTitles = [Paths.DISCOVER, Paths.POPULAR, Paths.TOP_RATED]
     const menuItems = menuTitles.map(item => {
       return {
         menuName: item,

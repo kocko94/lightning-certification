@@ -20,6 +20,16 @@ export async function getPopularMovies() {
   })
 }
 
+export async function getTopRatedMovies() {
+  const key = 'top_rated_movies'
+  return await fetchAndCache(key, async () => {
+    const path = '/movie/top_rated'
+    const response = await fetchAuthenticated(path, 'language=en-US')
+    const payload = await response.json()
+    return payload.results.mapToMovies()
+  })
+}
+
 export async function getSimilarMoviesFor(movieId) {
   const key = `similar_for_${movieId}`
   return await fetchAndCache(key, async () => {
