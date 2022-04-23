@@ -1,4 +1,4 @@
-import { Lightning, Router } from '@lightningjs/sdk'
+import { Lightning, Router, Utils } from '@lightningjs/sdk'
 import MenuItem from './MenuItem'
 
 export default class MenuWidget extends Lightning.Component {
@@ -12,10 +12,9 @@ export default class MenuWidget extends Lightning.Component {
         },
       },
       Background: {
-        rect: true,
         w: 500,
         h: 1080,
-        color: 0xffe9ed66,
+        src: Utils.asset('images/menu-background.jpg'),
       },
       MenuItems: {
         x: 150,
@@ -29,7 +28,7 @@ export default class MenuWidget extends Lightning.Component {
   }
 
   _setup() {
-    const menuTitles = ['Home', 'About']
+    const menuTitles = ['Discover', 'Sci-Fi', 'Action', 'Drama']
     const menuItems = menuTitles.map(item => {
       return {
         menuName: item,
