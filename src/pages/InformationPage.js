@@ -1,7 +1,7 @@
 import { Lightning, Router } from '@lightningjs/sdk'
 import { Paths, Widgets } from '../lib/routes'
 import { full } from '../utils/size'
-import { getDetailsForMovie } from '../lib/moveiApi'
+import { getDetailsForMovie, getSimilarMoviesFor } from '../lib/moveiApi'
 
 export default class InformationPage extends Lightning.Component {
   static _template() {
@@ -31,18 +31,16 @@ export default class InformationPage extends Lightning.Component {
   }
 
   set params({ movieId }) {
-    this._movieId = movieId
     const movieData = getDetailsForMovie(movieId)
-    console.debug(movieData)
-    this.tag('Debug').patch({
-      text: {
-        text: movieId,
-      },
-    })
+    this._buildUiForMovie(movieData)
   }
 
-  _buildUiForMovie(movieData) {
+  get similarMovies() {
+    return this._similarMovies ? this._similarMovies : []
+  }
 
+  async _buildUiForMovie(movieData) {
+    await this._buildSimilarMoviesFor(movieData.id)
   }
 
   _handleLeft() {
@@ -51,5 +49,10 @@ export default class InformationPage extends Lightning.Component {
 
   _handleBack() {
     Router.navigate(Paths.HOME)
+  }
+
+  async _buildSimilarMoviesFor(movieId) {
+    this._similarMovies = await getSimilarMoviesFor(movieId)
+    console.debug(this._similarMovies)
   }
 }

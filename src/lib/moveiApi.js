@@ -10,6 +10,16 @@ export async function getUpcomingMovies() {
   })
 }
 
+export async function getSimilarMoviesFor(movieId) {
+  const key = `similar_for_${movieId}`
+  return await fetchAndCache(key, async () => {
+    const path = `/movie/${movieId}/similar`
+    const response = await fetchAuthenticated(path, 'language=en-US')
+    const payload = await response.json()
+    return payload.results.mapToMovies()
+  })
+}
+
 export function getDetailsForMovie(movieId) {
   const movieNumber = Number(movieId)
   for (const key in cached) {
