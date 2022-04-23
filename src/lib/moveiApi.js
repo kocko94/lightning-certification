@@ -20,6 +20,18 @@ export async function getUpcomingMovies() {
   })
 }
 
+export function getDetailsForMovie(movieId) {
+  const movieNumber = Number(movieId)
+  for (const key in cached) {
+    for (const movie of cached[key]) {
+      if (movie.id === movieNumber) {
+        return movie
+      }
+    }
+  }
+  throw new Error('Not found movie... You should be looking for movies which are cached!')
+}
+
 function getImageUrlFor(path) {
   return `https://image.tmdb.org/t/p/original${path}`
 }
