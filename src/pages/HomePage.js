@@ -24,10 +24,6 @@ export default class HomePage extends Lightning.Component {
     }
   }
 
-  _getFocused() {
-    return this.tag('MovieRail')
-  }
-
   async _init() {
     const movieItems = await this._buildMovieItems()
     this.tag('MovieRail').patch({
@@ -35,8 +31,16 @@ export default class HomePage extends Lightning.Component {
     })
   }
 
+  _getFocused() {
+    return this.tag('MovieRail')
+  }
+
   _handleLeft() {
     Router.focusWidget(Widgets.MENU)
+  }
+
+  $onMenuItemSelected(movieId) {
+    console.debug('_onMenuItemSelected ' + movieId)
   }
 
   async _buildMovieItems() {

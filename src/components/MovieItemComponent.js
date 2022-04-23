@@ -13,7 +13,7 @@ const focus_change_anim_duration = 0.3
 const y_focused = 0
 const y_unfocused = (height_focused - height_unfocused) / 2
 const truncated_text_length_focus = 15
-const truncated_text_length_unfocus = 13
+const truncated_text_length_unfocused = 13
 
 export default class MovieItemComponent extends Lightning.Component {
   static _template() {
@@ -83,7 +83,7 @@ export default class MovieItemComponent extends Lightning.Component {
 
   set title(t) {
     this._titleOriginal = t
-    this._changeTextTruncatedLengthTo(truncated_text_length_unfocus)
+    this._changeTextTruncatedLengthTo(truncated_text_length_unfocused)
   }
 
   _changeAlphasTo(alpha) {
@@ -133,11 +133,11 @@ export default class MovieItemComponent extends Lightning.Component {
     this._changeWidthAndHeight(width_unfocused, height_unfocused)
     this._changeYTo(y_unfocused)
     this._changeTextAndShadowWidth(width_unfocused)
-    this._changeTextTruncatedLengthTo(truncated_text_length_unfocus)
+    this._changeTextTruncatedLengthTo(truncated_text_length_unfocused)
   }
 
   _handleEnter() {
-    console.debug(`clicked ${this._movieId}`)
+    this.fireAncestors('$onMenuItemSelected', this._movieId)
   }
 
   _truncateText(t, maxLength) {
