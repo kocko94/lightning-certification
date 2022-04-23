@@ -1,5 +1,6 @@
 import { Lightning, Router, Utils } from '@lightningjs/sdk'
 import MenuItem from './MenuItem'
+import { Paths } from '../../lib/routes'
 
 export default class MenuWidget extends Lightning.Component {
   static _template() {
@@ -28,7 +29,7 @@ export default class MenuWidget extends Lightning.Component {
   }
 
   _setup() {
-    const menuTitles = ['Discover', 'Sci-Fi', 'Action', 'Drama']
+    const menuTitles = [Paths.DISCOVER, Paths.POPULAR]
     const menuItems = menuTitles.map(item => {
       return {
         menuName: item,

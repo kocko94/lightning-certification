@@ -2,9 +2,11 @@ import DiscoverPage from '../pages/DiscoverPage'
 import BootPage from '../pages/BootPage'
 import InformationPage from '../pages/InformationPage'
 import NotFoundPage from '../pages/NotFoundPage'
+import PopularPage from '../pages/PopularPage'
 
 export const Paths = {
-  DISCOVER: 'discover',
+  DISCOVER: 'Discover',
+  POPULAR: 'Popular',
   BOOT: '$',
   NOT_FOUND: '*',
   INFO_RAW: 'information',
@@ -29,6 +31,11 @@ export const routes = {
     {
       path: Paths.DISCOVER,
       component: DiscoverPage,
+      widgets: [Widgets.MENU],
+    },
+    {
+      path: Paths.POPULAR,
+      component: PopularPage,
       widgets: [Widgets.MENU],
     },
     {

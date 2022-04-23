@@ -1,15 +1,15 @@
 import { Lightning, Router } from '@lightningjs/sdk'
 import MovieItemComponent from '../components/MovieItemComponent'
-import { getUpcomingMovies } from '../lib/moveiApi'
+import { getPopularMovies } from '../lib/moveiApi'
 import { Paths, Widgets } from '../lib/routes'
 import TitleWithCarouselComponent from '../components/TitleWithCarouselComponent'
 
-export default class DiscoverPage extends Lightning.Component {
+export default class PopularPage extends Lightning.Component {
   static _template() {
     return {
       TitleWithCarousel: {
         type: TitleWithCarouselComponent,
-        title: 'Upcoming releases',
+        title: 'Popular movies',
       },
     }
   }
@@ -32,7 +32,7 @@ export default class DiscoverPage extends Lightning.Component {
   }
 
   async _buildMovieItems() {
-    return (await getUpcomingMovies()).map(movie => {
+    return (await getPopularMovies()).map(movie => {
       return {
         type: MovieItemComponent,
         movieId: movie.id,
