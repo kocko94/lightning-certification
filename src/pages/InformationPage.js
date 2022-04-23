@@ -53,6 +53,10 @@ export default class InformationPage extends Lightning.Component {
     Router.navigate(Paths.HOME)
   }
 
+  $onMenuItemSelected(movieId) {
+    Router.navigate(`${Paths.INFO_RAW}/${movieId}`)
+  }
+
   async _buildSimilarMoviesFor(movieId) {
     this._similarMovies = await getSimilarMoviesFor(movieId)
     const similarMoviesUiItems = this._similarMovies.map(movie => {
