@@ -124,6 +124,7 @@ export default class InformationPage extends Lightning.Component {
   }
 
   $onMenuItemSelected(movieId) {
+    this.tag('SimilarMovies').focusFirstElement()
     Router.navigate(`${Paths.INFO_RAW}/${movieId}`)
   }
 

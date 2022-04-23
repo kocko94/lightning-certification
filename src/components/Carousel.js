@@ -25,9 +25,13 @@ export default class Carousel extends Lightning.Component {
     }
   }
 
+  focusFirstElement() {
+    this._idx_focussed_child = 0
+    this._refocus()
+  }
+
   _init() {
     this._idx_focussed_child = 0
-    this._idx_first_visible = 0
   }
 
   _handleLeft() {
