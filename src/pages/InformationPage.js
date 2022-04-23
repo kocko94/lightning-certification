@@ -38,11 +38,22 @@ export default class InformationPage extends Lightning.Component {
         y: 20,
         Title: {
           flexItem: {
-            marginBottom: 50,
+            marginBottom: 0,
           },
           text: {
             fontFace: 'Funky',
-            fontSize: 64,
+            fontSize: 72,
+            shadow: true,
+            shadowColor: 0xffff00ff,
+          },
+        },
+        ReleaseDate: {
+          flexItem: {
+            marginBottom: 40,
+          },
+          text: {
+            fontFace: 'Funky',
+            fontSize: 40,
             shadow: true,
             shadowColor: 0xffff00ff,
           },
@@ -124,6 +135,11 @@ export default class InformationPage extends Lightning.Component {
     infoContainer.tag('Overview').patch({
       text: {
         text: movie.overview.truncate(MAX_LENGTH_CHARS_OVERVIEW),
+      },
+    })
+    infoContainer.tag('ReleaseDate').patch({
+      text: {
+        text: `Release date ${movie.release_date}`,
       },
     })
   }
