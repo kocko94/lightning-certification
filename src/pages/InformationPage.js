@@ -10,6 +10,7 @@ export default class InformationPage extends Lightning.Component {
   static _template() {
     const width = 1920
     const height = 1080
+    const marginStart = 25
     return {
       w: width,
       h: height,
@@ -26,23 +27,21 @@ export default class InformationPage extends Lightning.Component {
         width,
         height,
       },
-      // MovieName: {
-      //   mountY: 1,
-      //   x: 25,
-      //   y: y => {
-      //     return y - 345
-      //   },
-      //   text: {
-      //     text: 'Similar',
-      //     fontFace: 'Funky',
-      //     fontSize: 36,
-      //     shadow: true,
-      //     shadowColor: 0xffff00ff,
-      //   },
-      // },
+      Title: {
+        mountY: 0.5,
+        mountX: 0,
+        x: marginStart,
+        y: 360,
+        text: {
+          fontFace: 'Funky',
+          fontSize: 64,
+          shadow: true,
+          shadowColor: 0xffff00ff,
+        },
+      },
       SimilarMoviesTitle: {
         mountY: 1,
-        x: 25,
+        x: marginStart,
         y: y => {
           return y - 345
         },
@@ -97,6 +96,11 @@ export default class InformationPage extends Lightning.Component {
   _showMovieData(movie) {
     this.tag('Background').patch({
       src: movie.backdrop,
+    })
+    this.tag('Title').patch({
+      text: {
+        text: movie.title,
+      },
     })
   }
 
