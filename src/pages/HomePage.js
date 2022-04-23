@@ -40,7 +40,6 @@ export default class HomePage extends Lightning.Component {
   }
 
   $onMenuItemSelected(movieId) {
-    console.debug('_onMenuItemSelected ' + movieId)
     Router.navigate(`${Paths.INFO_RAW}/${movieId}`)
   }
 

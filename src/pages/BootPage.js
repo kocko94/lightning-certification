@@ -1,28 +1,31 @@
-import { Lightning, Router, Utils } from '@lightningjs/sdk'
+import { Lightning, Router } from '@lightningjs/sdk'
 import { Paths } from '../lib/routes'
 import Background from '../components/Background'
+import { full, half } from '../utils/size'
 
 const ANIM_DUR_HEART_BEAT = 1.5
 
 export default class BootPage extends Lightning.Component {
   static _template() {
     return {
+      w: 1920,
+      h: 1080,
       Background: {
         type: Background,
       },
       LabelShadow: {
         rect: true,
         mount: 0.5,
-        w: 1920,
+        w: full,
         h: 100,
-        x: 960,
-        y: 540,
+        x: half,
+        y: half,
         color: 0xaa000000,
       },
       Label: {
         mount: 0.5,
-        x: 960,
-        y: 540,
+        x: half,
+        y: half,
         text: {
           text: 'Welcome back',
           fontFace: 'Funky',

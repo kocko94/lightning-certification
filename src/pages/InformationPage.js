@@ -1,6 +1,6 @@
 import { Lightning, Router } from '@lightningjs/sdk'
 import Background from '../components/Background'
-import { Paths } from '../lib/routes'
+import { Paths, Widgets } from '../lib/routes'
 
 export default class InformationPage extends Lightning.Component {
   static _template() {
@@ -26,12 +26,15 @@ export default class InformationPage extends Lightning.Component {
 
   set params({ movieId }) {
     this._movieId = movieId
-    console.debug('info page ' + this._movieId)
     this.tag('Debug').patch({
       text: {
         text: movieId,
       },
     })
+  }
+
+  _handleLeft() {
+    Router.focusWidget(Widgets.MENU)
   }
 
   _handleBack() {
