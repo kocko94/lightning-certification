@@ -12,7 +12,7 @@ export default class Carousel extends Lightning.Component {
         color: 0xaa000000,
         mountY: this.bindProp('mountY'),
         w: 3200,
-        h: 420,
+        h: 320,
         x: 0,
         y: 0,
         flex: {
@@ -37,7 +37,7 @@ export default class Carousel extends Lightning.Component {
         if (this._idx_focussed_child === 0) {
           this._moveRailTo(0)
         } else {
-          this._moveRailBy(290)
+          this._moveRailBy(190)
         }
       }
       return true
@@ -51,7 +51,7 @@ export default class Carousel extends Lightning.Component {
       this._idx_focussed_child++
     }
     if (!this._isActiveItemFullyVisible()) {
-      this._moveRailBy(-290)
+      this._moveRailBy(-190)
     }
   }
 
