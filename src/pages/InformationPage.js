@@ -4,6 +4,7 @@ import { full } from '../utils/size'
 import { getDetailsForMovie, getSimilarMoviesFor } from '../lib/moveiApi'
 import Carousel from '../components/Carousel'
 import MovieItemComponent from '../components/MovieItemComponent'
+import Gradient from '../components/Gradient'
 
 export default class InformationPage extends Lightning.Component {
   static _template() {
@@ -20,6 +21,25 @@ export default class InformationPage extends Lightning.Component {
           type: Lightning.textures.ImageTexture,
         },
       },
+      LeftGradient: {
+        type: Gradient,
+        width,
+        height,
+      },
+      // MovieName: {
+      //   mountY: 1,
+      //   x: 25,
+      //   y: y => {
+      //     return y - 345
+      //   },
+      //   text: {
+      //     text: 'Similar',
+      //     fontFace: 'Funky',
+      //     fontSize: 36,
+      //     shadow: true,
+      //     shadowColor: 0xffff00ff,
+      //   },
+      // },
       SimilarMoviesTitle: {
         mountY: 1,
         x: 25,
