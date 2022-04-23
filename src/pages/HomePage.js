@@ -14,6 +14,19 @@ export default class HomePage extends Lightning.Component {
       Background: {
         type: Background,
       },
+      Title: {
+        x: half(width),
+        mountX: 0.5,
+        mountY: 0,
+        y: 50,
+        text: {
+          text: 'Upcoming releases',
+          fontFace: 'Funky',
+          fontSize: 84,
+          shadow: true,
+          shadowColor: 0xffff00ff,
+        },
+      },
       MovieRail: {
         type: Carousel,
         width,
