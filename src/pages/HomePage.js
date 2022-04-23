@@ -1,51 +1,26 @@
 import { Lightning, Router } from '@lightningjs/sdk'
-import Carousel from '../components/Carousel'
-import { half } from '../utils/size'
-import Background from '../components/Background'
 import MovieItemComponent from '../components/MovieItemComponent'
 import { getUpcomingMovies } from '../lib/moveiApi'
 import { Paths, Widgets } from '../lib/routes'
+import TitleWithCarouselComponent from '../components/TitleWithCarouselComponent'
 
 export default class HomePage extends Lightning.Component {
   static _template() {
-    const width = 1920
-    const height = 1080
     return {
-      Background: {
-        type: Background,
-      },
-      Title: {
-        x: half(width),
-        mountX: 0.5,
-        mountY: 0,
-        y: 50,
-        text: {
-          text: 'Upcoming releases',
-          fontFace: 'Funky',
-          fontSize: 84,
-          shadow: true,
-          shadowColor: 0xffff00ff,
-        },
-      },
-      MovieRail: {
-        type: Carousel,
-        width,
-        height,
-        mountY: 0.5,
-        y: half(height),
+      TitleWithCarousel: {
+        type: TitleWithCarouselComponent,
+        text: 'Upcoming releases',
       },
     }
   }
 
   async _init() {
     const movieItems = await this._buildMovieItems()
-    this.tag('MovieRail').patch({
-      items: movieItems,
-    })
+    this.tag('TitleWithCarousel').patchCarouselItems(movieItems)
   }
 
   _getFocused() {
-    return this.tag('MovieRail')
+    return this.tag('TitleWithCarousel')
   }
 
   _handleLeft() {
