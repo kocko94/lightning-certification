@@ -1,5 +1,6 @@
 import { Img, Lightning } from '@lightningjs/sdk'
 import { full } from '../utils/size'
+import '../utils/text'
 
 const width = 200
 const height = 300
@@ -112,12 +113,12 @@ export default class MovieItemComponent extends Lightning.Component {
   }
 
   _changeTextTruncatedLengthTo(length) {
-    const titleText = this._truncateText(this._titleOriginal, length)
+    const shorten = this._titleOriginal.truncate(length)
     this.tag('Label')
       .tag('Text')
       .patch({
         text: {
-          text: titleText,
+          text: shorten,
         },
       })
   }
@@ -140,17 +141,5 @@ export default class MovieItemComponent extends Lightning.Component {
 
   _handleEnter() {
     this.fireAncestors('$onMenuItemSelected', this._movieId)
-  }
-
-  _truncateText(t, maxLength) {
-    let titleText = t
-    if (titleText.length > maxLength) {
-      titleText = `${t.substring(0, maxLength)}`
-      if (titleText[titleText.length - 1] === ' ') {
-        titleText = titleText.substring(0, titleText.length - 1)
-      }
-      titleText += '...'
-    }
-    return titleText
   }
 }

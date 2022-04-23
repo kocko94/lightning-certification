@@ -5,6 +5,9 @@ import { getDetailsForMovie, getSimilarMoviesFor } from '../lib/moveiApi'
 import Carousel from '../components/Carousel'
 import MovieItemComponent from '../components/MovieItemComponent'
 import Gradient from '../components/Gradient'
+import '../utils/text'
+
+const MAX_LENGTH_CHARS_OVERVIEW = 250
 
 export default class InformationPage extends Lightning.Component {
   static _template() {
@@ -27,16 +30,28 @@ export default class InformationPage extends Lightning.Component {
         width,
         height,
       },
-      Title: {
-        mountY: 0.5,
-        mountX: 0,
-        x: marginStart,
-        y: 360,
-        text: {
-          fontFace: 'Funky',
-          fontSize: 64,
-          shadow: true,
-          shadowColor: 0xffff00ff,
+      MovieInfoFlex: {
+        flex: {
+          direction: 'column',
+          padding: marginStart,
+        },
+        y: 200,
+        Title: {
+          text: {
+            fontFace: 'Funky',
+            fontSize: 64,
+            shadow: true,
+            shadowColor: 0xffff00ff,
+          },
+        },
+        Overview: {
+          w: width / 2.5,
+          text: {
+            fontFace: 'Funky',
+            fontSize: 46,
+            shadow: true,
+            shadowColor: 0xffff00ff,
+          },
         },
       },
       SimilarMoviesTitle: {
@@ -97,11 +112,18 @@ export default class InformationPage extends Lightning.Component {
     this.tag('Background').patch({
       src: movie.backdrop,
     })
-    this.tag('Title').patch({
+    const infoContainer = this.tag('MovieInfoFlex')
+    infoContainer.tag('Title').patch({
       text: {
         text: movie.title,
       },
     })
+    infoContainer.tag('Overview').patch({
+      text: {
+        text: movie.overview.truncate(MAX_LENGTH_CHARS_OVERVIEW),
+      },
+    })
+    console.debug(movie.overview)
   }
 
   async _showSimilarMoviesFor(movieId) {
