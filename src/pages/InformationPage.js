@@ -30,6 +30,8 @@ export default class InformationPage extends Lightning.Component {
           text: 'Similar',
           fontFace: 'Funky',
           fontSize: 36,
+          shadow: true,
+          shadowColor: 0xffff00ff,
         },
       },
       SimilarMovies: {

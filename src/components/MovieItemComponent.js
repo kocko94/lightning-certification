@@ -61,6 +61,8 @@ export default class MovieItemComponent extends Lightning.Component {
           text: {
             fontFace: 'Funky',
             fontSize: 26,
+            shadow: true,
+            shadowColor: 0xffff00ff,
           },
         },
       },
