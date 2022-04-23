@@ -2,6 +2,8 @@ import { Lightning, Router } from '@lightningjs/sdk'
 import { Paths, Widgets } from '../lib/routes'
 import { full } from '../utils/size'
 import { getDetailsForMovie, getSimilarMoviesFor } from '../lib/moveiApi'
+import Carousel from '../components/Carousel'
+import MovieItemComponent from '../components/MovieItemComponent'
 
 export default class InformationPage extends Lightning.Component {
   static _template() {
@@ -16,16 +18,12 @@ export default class InformationPage extends Lightning.Component {
         h: full,
         color: 0xdd000000,
       },
-      Debug: {
-        x: width / 2,
-        y: height / 2,
-        mount: 0.5,
-        text: {
-          text: {
-            fontFace: 'Funky',
-            fontSize: 46,
-          },
-        },
+      SimilarMovies: {
+        type: Carousel,
+        width,
+        height,
+        mountY: 1,
+        y: full,
       },
     }
   }
@@ -43,6 +41,10 @@ export default class InformationPage extends Lightning.Component {
     await this._buildSimilarMoviesFor(movieData.id)
   }
 
+  _getFocused() {
+    return this.tag('SimilarMovies')
+  }
+
   _handleLeft() {
     Router.focusWidget(Widgets.MENU)
   }
@@ -53,6 +55,16 @@ export default class InformationPage extends Lightning.Component {
 
   async _buildSimilarMoviesFor(movieId) {
     this._similarMovies = await getSimilarMoviesFor(movieId)
-    console.debug(this._similarMovies)
+    const similarMoviesUiItems = this._similarMovies.map(movie => {
+      return {
+        type: MovieItemComponent,
+        movieId: movie.id,
+        title: movie.title,
+        poster: movie.poster,
+      }
+    })
+    this.tag('SimilarMovies').patch({
+      items: similarMoviesUiItems,
+    })
   }
 }
