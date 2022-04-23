@@ -7,7 +7,7 @@ import MovieItemComponent from '../components/MovieItemComponent'
 import Gradient from '../components/Gradient'
 import '../utils/text'
 
-const MAX_LENGTH_CHARS_OVERVIEW = 270
+const MAX_LENGTH_CHARS_OVERVIEW = 220
 
 export default class InformationPage extends Lightning.Component {
   static _template() {
@@ -37,9 +37,6 @@ export default class InformationPage extends Lightning.Component {
         },
         y: 20,
         Title: {
-          flexItem: {
-            marginBottom: 0,
-          },
           text: {
             fontFace: 'Funky',
             fontSize: 72,
@@ -47,9 +44,17 @@ export default class InformationPage extends Lightning.Component {
             shadowColor: 0xffff00ff,
           },
         },
+        Rating: {
+          text: {
+            fontFace: 'Funky',
+            fontSize: 40,
+            shadow: true,
+            shadowColor: 0xffff00ff,
+          },
+        },
         ReleaseDate: {
           flexItem: {
-            marginBottom: 40,
+            marginBottom: 20,
           },
           text: {
             fontFace: 'Funky',
@@ -140,6 +145,11 @@ export default class InformationPage extends Lightning.Component {
     infoContainer.tag('ReleaseDate').patch({
       text: {
         text: `Release date ${movie.release_date}`,
+      },
+    })
+    infoContainer.tag('Rating').patch({
+      text: {
+        text: `Rating ${movie.vote_average}`,
       },
     })
   }
