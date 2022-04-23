@@ -37,7 +37,7 @@ export default class BootPage extends Lightning.Component {
 
   _init() {
     setTimeout(() => {
-      Router.navigate(Paths.HOME)
+      Router.navigate(Paths.DISCOVER)
     }, ANIM_DUR_HEART_BEAT * 1000 + 500)
     this._animateText()
   }

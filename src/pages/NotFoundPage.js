@@ -38,6 +38,6 @@ export default class NotFoundPage extends Lightning.Component {
   }
 
   _handleBack() {
-    Router.navigate(Paths.HOME)
+    Router.navigate(Paths.DISCOVER)
   }
 }

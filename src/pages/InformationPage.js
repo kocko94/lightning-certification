@@ -120,7 +120,7 @@ export default class InformationPage extends Lightning.Component {
   }
 
   _handleBack() {
-    Router.navigate(Paths.HOME)
+    Router.navigate(Paths.DISCOVER)
   }
 
   $onMenuItemSelected(movieId) {

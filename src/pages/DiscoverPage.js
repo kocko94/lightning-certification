@@ -4,7 +4,7 @@ import { getUpcomingMovies } from '../lib/moveiApi'
 import { Paths, Widgets } from '../lib/routes'
 import TitleWithCarouselComponent from '../components/TitleWithCarouselComponent'
 
-export default class HomePage extends Lightning.Component {
+export default class DiscoverPage extends Lightning.Component {
   static _template() {
     return {
       TitleWithCarousel: {
