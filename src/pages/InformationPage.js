@@ -18,6 +18,18 @@ export default class InformationPage extends Lightning.Component {
         h: full,
         color: 0xdd000000,
       },
+      SimilarMoviesTitle: {
+        mountY: 1,
+        x: 25,
+        y: y => {
+          return y - 345
+        },
+        text: {
+          text: 'Similar',
+          fontFace: 'Funky',
+          fontSize: 36,
+        },
+      },
       SimilarMovies: {
         type: Carousel,
         width,
