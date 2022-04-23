@@ -3,7 +3,7 @@ import Carousel from '../components/Carousel'
 import { half } from '../utils/size'
 import Background from '../components/Background'
 import MovieItemComponent from '../components/MovieItemComponent'
-import { getListOfMovies } from '../lib/moveiApi'
+import { getUpcomingMovies } from '../lib/moveiApi'
 import { Widgets } from '../lib/routes'
 
 export default class HomePage extends Lightning.Component {
@@ -40,7 +40,7 @@ export default class HomePage extends Lightning.Component {
   }
 
   async _buildMovieItems() {
-    return (await getListOfMovies()).map(movie => {
+    return (await getUpcomingMovies()).map(movie => {
       return {
         type: MovieItemComponent,
         title: movie.title,
