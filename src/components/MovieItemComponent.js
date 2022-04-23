@@ -67,6 +67,16 @@ export default class MovieItemComponent extends Lightning.Component {
     }
   }
 
+  constructor(props) {
+    super(props)
+    this._movieId = ''
+    this._titleOriginal = ''
+  }
+
+  set movieId(id) {
+    this._movieId = id
+  }
+
   set poster(p) {
     this.tag('Image').patch(Img(p).cover(width, height))
   }
@@ -108,8 +118,6 @@ export default class MovieItemComponent extends Lightning.Component {
           text: titleText,
         },
       })
-    // const textChange = ['text.text', titleText, { duration: focus_change_anim_duration }]
-    // text.setSmooth(...textChange)
   }
 
   _focus() {
@@ -126,6 +134,10 @@ export default class MovieItemComponent extends Lightning.Component {
     this._changeYTo(y_unfocused)
     this._changeTextAndShadowWidth(width_unfocused)
     this._changeTextTruncatedLengthTo(truncated_text_length_unfocus)
+  }
+
+  _handleEnter() {
+    console.debug(`clicked ${this._movieId}`)
   }
 
   _truncateText(t, maxLength) {

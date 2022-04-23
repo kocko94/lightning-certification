@@ -43,6 +43,7 @@ export default class HomePage extends Lightning.Component {
     return (await getUpcomingMovies()).map(movie => {
       return {
         type: MovieItemComponent,
+        movieId: movie.id,
         title: movie.title,
         poster: movie.poster,
       }
