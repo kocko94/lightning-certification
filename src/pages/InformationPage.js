@@ -16,7 +16,9 @@ export default class InformationPage extends Lightning.Component {
         rect: true,
         w: full,
         h: full,
-        color: 0xdd000000,
+        texture: {
+          type: Lightning.textures.ImageTexture,
+        },
       },
       SimilarMoviesTitle: {
         mountY: 1,
@@ -50,7 +52,8 @@ export default class InformationPage extends Lightning.Component {
   }
 
   async _buildUiForMovie(movieData) {
-    await this._buildSimilarMoviesFor(movieData.id)
+    this._showMovieData(movieData)
+    await this._showSimilarMoviesFor(movieData.id)
   }
 
   _getFocused() {
@@ -69,7 +72,13 @@ export default class InformationPage extends Lightning.Component {
     Router.navigate(`${Paths.INFO_RAW}/${movieId}`)
   }
 
-  async _buildSimilarMoviesFor(movieId) {
+  _showMovieData(movie) {
+    this.tag('Background').patch({
+      src: movie.backdrop,
+    })
+  }
+
+  async _showSimilarMoviesFor(movieId) {
     this._similarMovies = await getSimilarMoviesFor(movieId)
     const similarMoviesUiItems = this._similarMovies.map(movie => {
       return {
