@@ -8,6 +8,10 @@ export default class MenuItem extends Lightning.Component {
       Label: {
         text: {
           text: this.bindProp('menuName'),
+          shadow: true,
+          shadowColor: 0xffff00ff,
+          fontFace: 'Funky',
+          fontSize: 54,
         },
       },
     }
