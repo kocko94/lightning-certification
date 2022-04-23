@@ -7,7 +7,7 @@ export default class Background extends Lightning.Component {
         rect: true,
         w: 1920,
         h: 1080,
-        src: Utils.asset('images/background.jpg'),
+        src: Utils.asset('images/background2.jpg'),
       },
     }
   }
