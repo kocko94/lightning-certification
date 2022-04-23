@@ -4,7 +4,7 @@ import { half } from '../utils/size'
 import Background from '../components/Background'
 import MovieItemComponent from '../components/MovieItemComponent'
 import { getUpcomingMovies } from '../lib/moveiApi'
-import { Widgets } from '../lib/routes'
+import { Paths, Widgets } from '../lib/routes'
 
 export default class HomePage extends Lightning.Component {
   static _template() {
@@ -41,6 +41,7 @@ export default class HomePage extends Lightning.Component {
 
   $onMenuItemSelected(movieId) {
     console.debug('_onMenuItemSelected ' + movieId)
+    Router.navigate(`${Paths.INFO_RAW}/${movieId}`)
   }
 
   async _buildMovieItems() {
