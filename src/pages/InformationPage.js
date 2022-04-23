@@ -7,7 +7,7 @@ import MovieItemComponent from '../components/MovieItemComponent'
 import Gradient from '../components/Gradient'
 import '../utils/text'
 
-const MAX_LENGTH_CHARS_OVERVIEW = 250
+const MAX_LENGTH_CHARS_OVERVIEW = 270
 
 export default class InformationPage extends Lightning.Component {
   static _template() {
@@ -35,8 +35,11 @@ export default class InformationPage extends Lightning.Component {
           direction: 'column',
           padding: marginStart,
         },
-        y: 200,
+        y: 20,
         Title: {
+          flexItem: {
+            marginBottom: 50,
+          },
           text: {
             fontFace: 'Funky',
             fontSize: 64,
@@ -45,7 +48,7 @@ export default class InformationPage extends Lightning.Component {
           },
         },
         Overview: {
-          w: width / 2.5,
+          w: width / 3,
           text: {
             fontFace: 'Funky',
             fontSize: 46,
@@ -123,7 +126,6 @@ export default class InformationPage extends Lightning.Component {
         text: movie.overview.truncate(MAX_LENGTH_CHARS_OVERVIEW),
       },
     })
-    console.debug(movie.overview)
   }
 
   async _showSimilarMoviesFor(movieId) {

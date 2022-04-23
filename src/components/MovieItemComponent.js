@@ -113,12 +113,11 @@ export default class MovieItemComponent extends Lightning.Component {
   }
 
   _changeTextTruncatedLengthTo(length) {
-    const shorten = this._titleOriginal.truncate(length)
     this.tag('Label')
       .tag('Text')
       .patch({
         text: {
-          text: shorten,
+          text: this._titleOriginal.truncate(length),
         },
       })
   }
