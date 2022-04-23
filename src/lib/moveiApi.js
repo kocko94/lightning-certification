@@ -6,17 +6,7 @@ export async function getUpcomingMovies() {
     const path = '/movie/upcoming'
     const response = await fetchAuthenticated(path, 'language=en-US')
     const payload = await response.json()
-    return payload.results.map(movie => {
-      return {
-        id: movie['id'],
-        title: movie['title'],
-        overview: movie['overview'],
-        release_date: movie['release_date'],
-        vote_average: movie['vote_average'],
-        backdrop: getImageUrlFor(movie['backdrop_path']),
-        poster: getImageUrlFor(movie['poster_path']),
-      }
-    })
+    return payload.results.mapToMovies()
   })
 }
 
@@ -64,5 +54,19 @@ async function fetchAuthenticated(path, ...args) {
   }
   return await fetch(url, {
     method: 'GET',
+  })
+}
+
+Array.prototype.mapToMovies = function() {
+  return this.map(movie => {
+    return {
+      id: movie['id'],
+      title: movie['title'],
+      overview: movie['overview'],
+      release_date: movie['release_date'],
+      vote_average: movie['vote_average'],
+      backdrop: getImageUrlFor(movie['backdrop_path']),
+      poster: getImageUrlFor(movie['poster_path']),
+    }
   })
 }
