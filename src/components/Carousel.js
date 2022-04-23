@@ -1,6 +1,6 @@
 import { Lightning } from '@lightningjs/sdk'
 
-const VISIBLE_ELEMENTS_COUNT = 11
+const VISIBLE_ELEMENTS_COUNT = 15
 
 export default class Carousel extends Lightning.Component {
   static _template() {
@@ -12,7 +12,7 @@ export default class Carousel extends Lightning.Component {
         color: 0xaa000000,
         mountY: this.bindProp('mountY'),
         w: 3200,
-        h: 320,
+        h: 310,
         x: 0,
         y: 0,
         flex: {
